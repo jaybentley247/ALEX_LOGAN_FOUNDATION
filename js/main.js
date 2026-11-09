@@ -300,22 +300,30 @@
     });
   }
 
-  /* ---- Contact / donation form (front-end validation) ---- */
-  const form = document.getElementById("contactForm");
-  if (form) {
-    const status = document.getElementById("formStatus");
-    const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  /* ---- Forms: contact, donation confirmation, bank account request ---- */
+  // Each form has data-form="<type>" (and a matching hidden form_type field where needed):
+  //   contact.html                      -> "contact"
+  //   donate-paypal/bank/crypto.html    -> "donation-confirmation"
+  //   donate-bank.html (request form)   -> "bank-account-request"
+  const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  document.querySelectorAll("form.contact-form").forEach((form) => {
+    const status = form.querySelector(".form-status");
+    const hasUpload = !!form.querySelector('input[type="file"]');
 
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       let valid = true;
       form.querySelectorAll("[required]:not([type=file])").forEach((input) => {
         const field = input.closest(".field");
-        const ok = input.type === "email" ? emailRe.test(input.value.trim()) : input.value.trim() !== "";
+        let ok;
+        if (input.type === "checkbox") ok = input.checked;
+        else if (input.type === "email") ok = emailRe.test(input.value.trim());
+        else ok = input.value.trim() !== "";
         field.classList.toggle("error", !ok);
         if (!ok) valid = false;
       });
-      if (!uploadValid()) valid = false;
+      if (hasUpload && !uploadValid()) valid = false;
 
       status.className = "form-status";
       if (!valid) {
@@ -324,11 +332,13 @@
         return;
       }
 
-      // TODO: connect to a backend or form service (e.g. Formspree) to deliver messages.
-      status.textContent = "Thank you! Your message has been received — we’ll be in touch soon.";
+      // TODO (backend): send `new FormData(form)` to your server here.
+      // For data-form="bank-account-request": save it for the admin panel and
+      // email it to the foundation's contact address.
+      status.textContent = form.dataset.success || "Thank you! Your message has been received — we’ll be in touch soon.";
       status.classList.add("success");
       form.reset();
-      resetUpload();
+      if (hasUpload) resetUpload();
     });
 
     form.querySelectorAll("input:not([type=file]), textarea, select").forEach((input) => {
@@ -336,7 +346,7 @@
       input.addEventListener("input", clear);
       input.addEventListener("change", clear);
     });
-  }
+  });
 
   /* ---- Copy-to-clipboard (Donate page) ---- */
   function fallbackCopy(text) {

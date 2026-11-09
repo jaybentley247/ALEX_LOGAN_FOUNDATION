@@ -1226,6 +1226,28 @@ font { background: transparent !important; box-shadow: none !important; }
 }
 .crypto-note { margin: 22px 0 0; text-align: center; font-size: .9rem; color: var(--muted); }
 
+/* ---------- Bank details request ---------- */
+.request-subhead { font-size: 1.15rem; margin-bottom: 4px; }
+.contact-grid .notice { margin-top: 24px; }
+.notice a { color: var(--green); font-weight: 600; word-break: break-word; }
+.field-check { margin-bottom: 22px; }
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: .88rem;
+  color: var(--text);
+  cursor: pointer;
+}
+.check input {
+  flex-shrink: 0;
+  width: 20px; height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--green);
+  cursor: pointer;
+}
+.field-check.error .check span { color: var(--red); }
+
 /* ---------- Receipt upload ---------- */
 .field-label {
   display: block;

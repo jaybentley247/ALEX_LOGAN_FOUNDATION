@@ -6,13 +6,45 @@
   const links = document.getElementById("navLinks");
 
   /* ---- Translator (Google Translate, auto-detects visitor language) ---- */
+  // [Google Translate code, native name, English name] — English first, then A–Z by English name
   const LANGS = [
-    ["en", "English"], ["fr", "Français"], ["es", "Español"], ["pt", "Português"],
-    ["de", "Deutsch"], ["it", "Italiano"], ["nl", "Nederlands"], ["ar", "العربية"],
-    ["zh-CN", "中文 (简体)"], ["zh-TW", "中文 (繁體)"], ["hi", "हिन्दी"], ["ru", "Русский"],
-    ["ja", "日本語"], ["ko", "한국어"], ["tr", "Türkçe"], ["sw", "Kiswahili"],
-    ["yo", "Yorùbá"], ["ig", "Igbo"], ["ha", "Hausa"], ["am", "አማርኛ"], ["zu", "isiZulu"]
+    ["en", "English", "English"],
+    ["af", "Afrikaans", "Afrikaans"], ["ak", "Akan / Twi", "Twi"], ["sq", "Shqip", "Albanian"],
+    ["am", "አማርኛ", "Amharic"], ["ar", "العربية", "Arabic"], ["hy", "Հայերեն", "Armenian"],
+    ["az", "Azərbaycan", "Azerbaijani"], ["eu", "Euskara", "Basque"], ["be", "Беларуская", "Belarusian"],
+    ["bn", "বাংলা", "Bengali"], ["bs", "Bosanski", "Bosnian"], ["bg", "Български", "Bulgarian"],
+    ["my", "မြန်မာ", "Burmese"], ["ca", "Català", "Catalan"], ["ceb", "Cebuano", "Cebuano"],
+    ["ny", "Chichewa", "Chichewa"], ["zh-CN", "中文 (简体)", "Chinese Simplified"],
+    ["zh-TW", "中文 (繁體)", "Chinese Traditional"], ["hr", "Hrvatski", "Croatian"],
+    ["cs", "Čeština", "Czech"], ["da", "Dansk", "Danish"], ["nl", "Nederlands", "Dutch"],
+    ["et", "Eesti", "Estonian"], ["ee", "Eʋegbe", "Ewe"], ["tl", "Filipino", "Filipino"],
+    ["fi", "Suomi", "Finnish"], ["fr", "Français", "French"], ["ka", "ქართული", "Georgian"],
+    ["de", "Deutsch", "German"], ["el", "Ελληνικά", "Greek"], ["gu", "ગુજરાતી", "Gujarati"],
+    ["ht", "Kreyòl ayisyen", "Haitian Creole"], ["ha", "Hausa", "Hausa"], ["iw", "עברית", "Hebrew"],
+    ["hi", "हिन्दी", "Hindi"], ["hu", "Magyar", "Hungarian"], ["is", "Íslenska", "Icelandic"],
+    ["ig", "Igbo", "Igbo"], ["id", "Bahasa Indonesia", "Indonesian"], ["ga", "Gaeilge", "Irish"],
+    ["it", "Italiano", "Italian"], ["ja", "日本語", "Japanese"], ["jw", "Basa Jawa", "Javanese"],
+    ["kn", "ಕನ್ನಡ", "Kannada"], ["kk", "Қазақ", "Kazakh"], ["km", "ខ្មែរ", "Khmer"],
+    ["rw", "Kinyarwanda", "Kinyarwanda"], ["ko", "한국어", "Korean"], ["ku", "Kurdî", "Kurdish"],
+    ["lo", "ລາວ", "Lao"], ["lv", "Latviešu", "Latvian"], ["ln", "Lingála", "Lingala"],
+    ["lt", "Lietuvių", "Lithuanian"], ["lg", "Luganda", "Luganda"], ["mk", "Македонски", "Macedonian"],
+    ["mg", "Malagasy", "Malagasy"], ["ms", "Bahasa Melayu", "Malay"], ["ml", "മലയാളം", "Malayalam"],
+    ["mt", "Malti", "Maltese"], ["mi", "Māori", "Maori"], ["mr", "मराठी", "Marathi"],
+    ["mn", "Монгол", "Mongolian"], ["ne", "नेपाली", "Nepali"], ["no", "Norsk", "Norwegian"],
+    ["om", "Afaan Oromoo", "Oromo"], ["ps", "پښتو", "Pashto"], ["fa", "فارسی", "Persian"],
+    ["pl", "Polski", "Polish"], ["pt", "Português", "Portuguese"], ["pa", "ਪੰਜਾਬੀ", "Punjabi"],
+    ["ro", "Română", "Romanian"], ["ru", "Русский", "Russian"], ["sm", "Gagana Sāmoa", "Samoan"],
+    ["sr", "Српски", "Serbian"], ["st", "Sesotho", "Sesotho"], ["sn", "chiShona", "Shona"],
+    ["si", "සිංහල", "Sinhala"], ["sk", "Slovenčina", "Slovak"], ["sl", "Slovenščina", "Slovenian"],
+    ["so", "Soomaali", "Somali"], ["es", "Español", "Spanish"], ["sw", "Kiswahili", "Swahili"],
+    ["sv", "Svenska", "Swedish"], ["tg", "Тоҷикӣ", "Tajik"], ["ta", "தமிழ்", "Tamil"],
+    ["te", "తెలుగు", "Telugu"], ["th", "ไทย", "Thai"], ["ti", "ትግርኛ", "Tigrinya"],
+    ["tr", "Türkçe", "Turkish"], ["uk", "Українська", "Ukrainian"], ["ur", "اردو", "Urdu"],
+    ["uz", "Oʻzbek", "Uzbek"], ["vi", "Tiếng Việt", "Vietnamese"], ["cy", "Cymraeg", "Welsh"],
+    ["xh", "isiXhosa", "Xhosa"], ["yo", "Yorùbá", "Yoruba"], ["zu", "isiZulu", "Zulu"]
   ];
+  // Browser language codes that differ from Google Translate's codes
+  const CODE_ALIASES = { he: "iw", fil: "tl", jv: "jw", nb: "no", nn: "no", tw: "ak" };
   const LANG_KEY = "alf-language";
   const langSelect = document.getElementById("langSelect");
 
@@ -27,7 +59,8 @@
       const full = raw.replace("_", "-");
       if (/^zh-(TW|HK|MO|Hant)/i.test(full)) return "zh-TW";
       if (/^zh/i.test(full)) return "zh-CN";
-      const base = full.split("-")[0].toLowerCase();
+      let base = full.split("-")[0].toLowerCase();
+      base = CODE_ALIASES[base] || base;
       if (supported(base)) return base;
     }
     return "en";
@@ -99,7 +132,9 @@
   }
 
   if (langSelect) {
-    langSelect.innerHTML = LANGS.map(([c, n]) => `<option value="${c}">${n}</option>`).join("");
+    langSelect.innerHTML = LANGS.map(([c, native, english]) =>
+      `<option value="${c}">${native === english ? native : `${native} (${english})`}</option>`
+    ).join("");
     const initial = savedLang() || detectLanguage();
     langSelect.value = supported(initial) ? initial : "en";
     if (langSelect.value !== "en") translateTo(langSelect.value);

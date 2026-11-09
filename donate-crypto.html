@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Donate with Crypto | Alexander Logan Foundation</title>
+  <meta name="description" content="The Alexander Logan Foundation is a non-profit organisation committed to transforming lives through education, healthcare, and community empowerment." />
+  <meta name="theme-color" content="#1a9b46" />
+  <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ============ NAVBAR ============ -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand" aria-label="Alexander Logan Foundation home">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect x="2" y="34" width="10" height="24" rx="2" fill="#0f6b30"/>
+          <path d="M12 36c6-1 10-5 13-11 2-4 7-3 6 2l-2 8h22c4 0 4 6 0 6h-3c3 0 3 6 0 6h-3c3 0 3 5 0 5h-5c2 0 2 5-1 5H12z" fill="#1a9b46"/>
+          <path d="M40 31c-9-6-13-10-13-15.5a6.5 6.5 0 0 1 13-2.2 6.5 6.5 0 0 1 13 2.2C53 21 49 25 40 31z" fill="#e3e320"/>
+        </svg>
+        <span class="brand-text"><span class="brand-line1">Alexander Logan</span><span class="brand-line2">Foundation</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="about.html">About</a>
+        <a href="mission.html">Our Mission</a>
+        <a href="contact.html">Contact</a>
+        <a href="donate.html" class="btn btn-primary btn-sm nav-cta nav-cta-mobile">Donate Now</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="donate.html" class="btn btn-primary btn-sm nav-cta">Donate Now</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ PAGE HERO ============ -->
+    <section class="page-hero" style="--hero-img: url('https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?auto=format&fit=crop&w=2000&q=80')">
+      <div class="container page-hero-content">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><span>/</span><a href="donate.html">Donate</a><span>/</span><span aria-current="page">Cryptocurrency</span></nav>
+        <h1>Donate with Crypto</h1>
+        <p>Donate USDT, Bitcoin or Ethereum directly to the foundation’s official wallets.</p>
+      </div>
+    </section>
+
+
+    <!-- ============ PAYMENT DETAILS ============ -->
+    <section class="section section-tight">
+      <div class="container">
+        <ol class="progress" aria-label="Donation steps">
+          <li class="is-done"><span>1</span>Choose method</li>
+          <li class="is-current"><span>2</span>Make payment</li>
+          <li><span>3</span>Confirm donation</li>
+        </ol>
+
+        <div class="method-topbar">
+          <a href="donate.html" class="back-link"><span aria-hidden="true">&larr;</span> Choose a different method</a>
+        </div>
+
+        <div class="section-head reveal">
+          <span class="eyebrow">Cryptocurrency</span>
+          <h2>Our wallet addresses.</h2>
+          <p>Send to the wallet for the coin you’re donating. Tap <strong>Copy</strong> to copy an address.</p>
+        </div>
+
+        <div class="method-panel">
+          <div class="wallets">
+            <article class="wallet-card">
+              <header class="wallet-head">
+                <span class="coin coin-usdt" aria-hidden="true">₮</span>
+                <div>
+                  <h3>Tether (USDT)</h3>
+                  <span class="network-badge">TRC-20 Network</span>
+                </div>
+              </header>
+              <dl class="account-details">
+                <div><dt>Wallet Address</dt><dd><span class="wallet-address">[Your USDT TRC-20 wallet address]</span><button class="copy-btn" data-copy="[Your USDT TRC-20 wallet address]">Copy</button></dd></div>
+              </dl>
+              <p class="wallet-warning">Send only <strong>USDT</strong> on the <strong>TRC-20 (Tron)</strong> network to this address.</p>
+            </article>
+
+            <article class="wallet-card">
+              <header class="wallet-head">
+                <span class="coin coin-btc" aria-hidden="true">₿</span>
+                <div>
+                  <h3>Bitcoin (BTC)</h3>
+                  <span class="network-badge">Bitcoin Network</span>
+                </div>
+              </header>
+              <dl class="account-details">
+                <div><dt>Wallet Address</dt><dd><span class="wallet-address">[Your Bitcoin wallet address]</span><button class="copy-btn" data-copy="[Your Bitcoin wallet address]">Copy</button></dd></div>
+              </dl>
+              <p class="wallet-warning">Send only <strong>BTC</strong> on the <strong>Bitcoin</strong> network to this address.</p>
+            </article>
+
+            <article class="wallet-card">
+              <header class="wallet-head">
+                <span class="coin coin-eth" aria-hidden="true">Ξ</span>
+                <div>
+                  <h3>Ethereum (ETH)</h3>
+                  <span class="network-badge">ERC-20 Network</span>
+                </div>
+              </header>
+              <dl class="account-details">
+                <div><dt>Wallet Address</dt><dd><span class="wallet-address">[Your Ethereum wallet address]</span><button class="copy-btn" data-copy="[Your Ethereum wallet address]">Copy</button></dd></div>
+              </dl>
+              <p class="wallet-warning">Send only <strong>ETH</strong> on the <strong>Ethereum (ERC-20)</strong> network to this address.</p>
+            </article>
+          </div>
+          <p class="crypto-note">Crypto transfers can’t be reversed. Always double-check the address and network before sending — funds sent on the wrong network may be lost permanently.</p>
+        </div>
+
+        <div class="notice reveal">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4zm-1.5 16L6 12.5l1.4-1.4 3.1 3.1 6.1-6.1L18 9.5 10.5 17z"/></svg>
+          <p><strong>Donate safely:</strong> the Alexander Logan Foundation will only ever ask you to pay into the accounts and wallets listed on this page. If anyone gives you different details, please contact us before sending money.</p>
+        </div>
+      </div>
+
+        <div class="center-action">
+          <a href="#confirm" class="btn btn-primary">I’ve Made My Payment</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ AFTER YOU DONATE ============ -->
+    <section class="section bg-alt" id="confirm">
+      <div class="container contact-grid">
+        <div class="reveal">
+          <span class="eyebrow">After You Give</span>
+          <h2>Let us know about your donation.</h2>
+          <p>Once you’ve made your payment, fill in this short form so we can confirm your gift, send you a receipt and thank you personally.</p>
+          <div class="steps steps-vertical">
+            <div class="step"><span class="step-num">1</span><div><h3>Choose an amount</h3><p>Give any amount you’re comfortable with, once or every month.</p></div></div>
+            <div class="step"><span class="step-num">2</span><div><h3>Send to our wallet</h3><p>Copy the correct wallet address above and send on the matching network.</p></div></div>
+            <div class="step"><span class="step-num">3</span><div><h3>Notify us</h3><p>Send us the details and we’ll email your receipt within two working days.</p></div></div>
+          </div>
+        </div>
+
+        <form class="contact-form reveal" id="contactForm" novalidate>
+          <h3>Confirm your donation</h3>
+          <div class="form-row">
+            <div class="field">
+              <label for="name">Full Name</label>
+              <input id="name" name="name" type="text" placeholder="Jane Doe" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email Address</label>
+              <input id="email" name="email" type="email" placeholder="jane@example.com" autocomplete="email" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="amount">Amount Sent</label>
+              <input id="amount" name="amount" type="text" placeholder="e.g. 100 USDT or 0.002 BTC" required />
+            </div>
+            <div class="field">
+              <label for="account">Cryptocurrency Sent</label>
+              <select id="account" name="account">
+                <option>USDT (TRC-20)</option>
+                <option>Bitcoin (BTC)</option>
+                <option>Ethereum (ETH)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="reason">Reason for Donation</label>
+              <select id="reason" name="reason" required>
+                <option value="" selected disabled>Select a reason</option>
+                <option>General support</option>
+                <option>In memory of a loved one</option>
+                <option>In honour of someone</option>
+                <option>Birthday or celebration gift</option>
+                <option>Religious giving / Tithe / Zakat</option>
+                <option>Corporate or company giving</option>
+                <option>Response to an emergency appeal</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="programme">Direct my gift to</label>
+              <select id="programme" name="programme">
+                <option>Where it’s needed most</option>
+                <option>Education</option>
+                <option>Healthcare</option>
+                <option>Community Empowerment</option>
+                <option>Relief &amp; Welfare</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field upload-field">
+            <span class="field-label" id="receiptLabel">Upload Payment Receipt</span>
+            <label class="upload-zone" for="receipt" id="uploadZone">
+              <input id="receipt" name="receipt" type="file" accept="image/png,image/jpeg,image/webp,application/pdf" aria-labelledby="receiptLabel" aria-describedby="receiptHint" required />
+              <span class="upload-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M19.4 10A7.5 7.5 0 0 0 5.4 8 6 6 0 0 0 6 20h13a5 5 0 0 0 .4-10zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+              </span>
+              <span class="upload-text"><strong>Click to upload</strong> or drag and drop your receipt here</span>
+              <span class="upload-hint" id="receiptHint">PNG, JPG, WEBP or PDF · Max 5MB</span>
+            </label>
+            <div class="upload-preview" id="uploadPreview" hidden>
+              <img id="uploadThumb" alt="Receipt preview" hidden />
+              <span class="upload-file-icon" id="uploadFileIcon" aria-hidden="true" hidden>PDF</span>
+              <div class="upload-meta">
+                <strong id="uploadName"></strong>
+                <span id="uploadSize"></span>
+              </div>
+              <button type="button" class="upload-remove" id="uploadRemove" aria-label="Remove receipt">&times;</button>
+            </div>
+            <p class="field-error" id="uploadError" role="alert"></p>
+          </div>
+
+          <div class="field">
+            <label for="message">Transaction Hash (TXID) / Note</label>
+            <textarea id="message" name="message" rows="3" placeholder="Transfer reference, date or a message for our team" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Confirm Donation</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ CTA ============ -->
+    <section class="cta-banner">
+      <div class="container cta-inner reveal">
+        <div>
+          <h2>Can’t give financially right now?</h2>
+          <p>Your time and skills are just as valuable. Join our family of volunteers.</p>
+        </div>
+        <a href="contact.html" class="btn btn-accent">Become a Volunteer</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand brand-footer">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect x="2" y="34" width="10" height="24" rx="2" fill="#0f6b30"/>
+            <path d="M12 36c6-1 10-5 13-11 2-4 7-3 6 2l-2 8h22c4 0 4 6 0 6h-3c3 0 3 6 0 6h-3c3 0 3 5 0 5h-5c2 0 2 5-1 5H12z" fill="#3fbf63"/>
+            <path d="M40 31c-9-6-13-10-13-15.5a6.5 6.5 0 0 1 13-2.2 6.5 6.5 0 0 1 13 2.2C53 21 49 25 40 31z" fill="#e6e32a"/>
+          </svg>
+          <span class="brand-text"><span class="brand-line1">Alexander Logan</span><span class="brand-line2">Foundation</span></span>
+        </a>
+        <p>Giving hands, caring hearts — transforming lives through education, healthcare and community empowerment.</p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="mission.html">Our Mission</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="donate.html">Donate</a></li>
+          <li><a href="contact.html">Volunteer</a></li>
+          <li><a href="contact.html">Partner With Us</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stay Connected</h4>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M14 8V6c0-.8.2-1.3 1.4-1.3H17V1.2C16.7 1.1 15.6 1 14.4 1 11.9 1 10.2 2.5 10.2 5.3V8H7.5v3.6h2.7V23H14V11.6h2.8l.4-3.6H14z"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4zM17.3 5.5a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4zM21.9 7c-.1-1.6-.4-3-1.6-4.2S17.6 1.2 16 1.1C14.4 1 9.6 1 8 1.1 6.4 1.2 5 1.5 3.8 2.7S2.2 5.4 2.1 7C2 8.6 2 15.4 2.1 17c.1 1.6.4 3 1.6 4.2s2.6 1.5 4.2 1.6c1.6.1 6.4.1 8 0 1.6-.1 3-.4 4.2-1.6s1.5-2.6 1.6-4.2c.1-1.6.1-8.4.2-10z"/></svg></a>
+          <a href="#" aria-label="X (Twitter)"><svg viewBox="0 0 24 24"><path d="M18.2 2h3.4l-7.4 8.5L23 22h-6.8l-5.3-7-6.1 7H1.4l7.9-9.1L1 2h7l4.8 6.4L18.2 2zm-1.2 18h1.9L7.1 3.9H5.1L17 20z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3V9.5zm6.5 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4V9.5z"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container"><p>&copy; <span id="year"></span> Alexander Logan Foundation. All rights reserved.</p></div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

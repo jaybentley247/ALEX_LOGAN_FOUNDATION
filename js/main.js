@@ -5,6 +5,111 @@
   const toggle = document.getElementById("navToggle");
   const links = document.getElementById("navLinks");
 
+  /* ---- Translator (Google Translate, auto-detects visitor language) ---- */
+  const LANGS = [
+    ["en", "English"], ["fr", "Français"], ["es", "Español"], ["pt", "Português"],
+    ["de", "Deutsch"], ["it", "Italiano"], ["nl", "Nederlands"], ["ar", "العربية"],
+    ["zh-CN", "中文 (简体)"], ["zh-TW", "中文 (繁體)"], ["hi", "हिन्दी"], ["ru", "Русский"],
+    ["ja", "日本語"], ["ko", "한국어"], ["tr", "Türkçe"], ["sw", "Kiswahili"],
+    ["yo", "Yorùbá"], ["ig", "Igbo"], ["ha", "Hausa"], ["am", "አማርኛ"], ["zu", "isiZulu"]
+  ];
+  const LANG_KEY = "alf-language";
+  const langSelect = document.getElementById("langSelect");
+
+  // Keep names, account numbers and wallet addresses untranslated
+  document.querySelectorAll(".brand-text, .account-details dd span, .wallet-address, .coin, .method-icon")
+    .forEach((el) => el.classList.add("notranslate"));
+
+  const supported = (code) => LANGS.some(([c]) => c === code);
+  const detectLanguage = () => {
+    const prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || "en"];
+    for (const raw of prefs) {
+      const full = raw.replace("_", "-");
+      if (/^zh-(TW|HK|MO|Hant)/i.test(full)) return "zh-TW";
+      if (/^zh/i.test(full)) return "zh-CN";
+      const base = full.split("-")[0].toLowerCase();
+      if (supported(base)) return base;
+    }
+    return "en";
+  };
+  const savedLang = () => { try { return localStorage.getItem(LANG_KEY); } catch (_) { return null; } };
+  const storeLang = (v) => { try { localStorage.setItem(LANG_KEY, v); } catch (_) { /* storage blocked */ } };
+
+  const clearGoogTransCookie = () => {
+    const expire = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    document.cookie = expire;
+    if (location.hostname) {
+      document.cookie = expire + "; domain=" + location.hostname;
+      document.cookie = expire + "; domain=." + location.hostname.replace(/^www\./, "");
+    }
+  };
+
+  let gtLoaded = false;
+  let pendingLang = null;
+
+  function applyToWidget(lang) {
+    let tries = 0;
+    const timer = setInterval(() => {
+      const combo = document.querySelector(".goog-te-combo");
+      if (combo) {
+        clearInterval(timer);
+        // Google fills its language list lazily, so add the option if it isn't there yet
+        if (![...combo.options].some((o) => o.value === lang)) {
+          combo.add(new Option(lang, lang));
+        }
+        combo.value = lang;
+        combo.dispatchEvent(new Event("change"));
+      } else if (++tries > 50) {
+        clearInterval(timer); // widget unavailable (offline or blocked)
+      }
+    }, 200);
+  }
+
+  window.googleTranslateElementInit = function () {
+    /* global google */
+    new google.translate.TranslateElement(
+      { pageLanguage: "en", includedLanguages: LANGS.map(([c]) => c).join(","), autoDisplay: false },
+      "google_translate_element"
+    );
+    if (pendingLang) applyToWidget(pendingLang);
+  };
+
+  function translateTo(lang) {
+    if (lang === "en") {
+      // Return to the original English page
+      clearGoogTransCookie();
+      if (document.documentElement.classList.contains("translated-ltr") ||
+          document.documentElement.classList.contains("translated-rtl")) {
+        location.reload();
+      }
+      return;
+    }
+    pendingLang = lang;
+    // Google reads this cookie on start-up and translates the page automatically
+    document.cookie = "googtrans=/en/" + lang + "; path=/";
+    if (!gtLoaded) {
+      gtLoaded = true;
+      const s = document.createElement("script");
+      s.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+      s.async = true;
+      document.body.appendChild(s);
+    } else {
+      applyToWidget(lang);
+    }
+  }
+
+  if (langSelect) {
+    langSelect.innerHTML = LANGS.map(([c, n]) => `<option value="${c}">${n}</option>`).join("");
+    const initial = savedLang() || detectLanguage();
+    langSelect.value = supported(initial) ? initial : "en";
+    if (langSelect.value !== "en") translateTo(langSelect.value);
+
+    langSelect.addEventListener("change", () => {
+      storeLang(langSelect.value);
+      translateTo(langSelect.value);
+    });
+  }
+
   /* ---- Highlight the nav link for the current page ---- */
   const current = (location.pathname.split("/").pop() || "index.html").toLowerCase();
   links.querySelectorAll("a:not(.btn)").forEach((a) => {

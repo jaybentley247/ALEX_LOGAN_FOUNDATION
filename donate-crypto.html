@@ -16,6 +16,17 @@
 
   <!-- ============ NAVBAR ============ -->
   <header class="navbar" id="navbar">
+    <div class="topbar">
+      <div class="container topbar-inner">
+        <p class="topbar-note"><span class="notranslate">Alexander Logan Foundation &middot;</span> Giving hands, caring hearts</p>
+        <div class="lang-switch">
+          <svg class="lang-globe" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm6.9 6h-2.9a15.6 15.6 0 0 0-1.4-3.6A8 8 0 0 1 18.9 8zM12 4c.8 1.2 1.5 2.5 1.9 4h-3.8c.4-1.5 1.1-2.8 1.9-4zM4.3 14a8.2 8.2 0 0 1 0-4h3.4a16.5 16.5 0 0 0 0 4H4.3zm.8 2h2.9c.3 1.3.8 2.5 1.4 3.6A8 8 0 0 1 5.1 16zM8 8H5.1a8 8 0 0 1 4.3-3.6C8.8 5.5 8.3 6.7 8 8zm4 12c-.8-1.2-1.5-2.5-1.9-4h3.8c-.4 1.5-1.1 2.8-1.9 4zm2.3-6H9.7a14.7 14.7 0 0 1 0-4h4.6a14.7 14.7 0 0 1 0 4zm.3 5.6c.6-1.1 1.1-2.3 1.4-3.6h2.9a8 8 0 0 1-4.3 3.6zm1.7-5.6a16.5 16.5 0 0 0 0-4h3.4a8.2 8.2 0 0 1 0 4h-3.4z"/></svg>
+          <label for="langSelect" class="sr-only">Choose language</label>
+          <select id="langSelect" class="lang-select notranslate" translate="no"></select>
+        </div>
+      </div>
+      <div id="google_translate_element" hidden></div>
+    </div>
     <div class="container nav-inner">
       <a href="index.html" class="brand" aria-label="Alexander Logan Foundation home">
         <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
@@ -77,13 +88,13 @@
                 <span class="coin coin-usdt" aria-hidden="true">₮</span>
                 <div>
                   <h3>Tether (USDT)</h3>
-                  <span class="network-badge">TRC-20 Network</span>
+                  <span class="network-badge">ERC-20 Network (Ethereum)</span>
                 </div>
               </header>
               <dl class="account-details">
-                <div><dt>Wallet Address</dt><dd><span class="wallet-address">[Your USDT TRC-20 wallet address]</span><button class="copy-btn" data-copy="[Your USDT TRC-20 wallet address]">Copy</button></dd></div>
+                <div><dt>Wallet Address</dt><dd><span class="wallet-address">0xBa975F1963684D7Ad7e3AA243d037223C1bb2bf6</span><button class="copy-btn" data-copy="0xBa975F1963684D7Ad7e3AA243d037223C1bb2bf6">Copy</button></dd></div>
               </dl>
-              <p class="wallet-warning">Send only <strong>USDT</strong> on the <strong>TRC-20 (Tron)</strong> network to this address.</p>
+              <p class="wallet-warning">Send only <strong>USDT</strong> on the <strong>Ethereum (ERC-20)</strong> network to this address. Do not send via TRC-20 (Tron), BEP-20 or any other network.</p>
             </article>
 
             <article class="wallet-card">
@@ -95,7 +106,7 @@
                 </div>
               </header>
               <dl class="account-details">
-                <div><dt>Wallet Address</dt><dd><span class="wallet-address">[Your Bitcoin wallet address]</span><button class="copy-btn" data-copy="[Your Bitcoin wallet address]">Copy</button></dd></div>
+                <div><dt>Wallet Address</dt><dd><span class="wallet-address">bc1q0xa558zd8cd5j8yxy77c6aalqtshln5cgakmk4</span><button class="copy-btn" data-copy="bc1q0xa558zd8cd5j8yxy77c6aalqtshln5cgakmk4">Copy</button></dd></div>
               </dl>
               <p class="wallet-warning">Send only <strong>BTC</strong> on the <strong>Bitcoin</strong> network to this address.</p>
             </article>
@@ -105,11 +116,11 @@
                 <span class="coin coin-eth" aria-hidden="true">Ξ</span>
                 <div>
                   <h3>Ethereum (ETH)</h3>
-                  <span class="network-badge">ERC-20 Network</span>
+                  <span class="network-badge">Ethereum Network</span>
                 </div>
               </header>
               <dl class="account-details">
-                <div><dt>Wallet Address</dt><dd><span class="wallet-address">[Your Ethereum wallet address]</span><button class="copy-btn" data-copy="[Your Ethereum wallet address]">Copy</button></dd></div>
+                <div><dt>Wallet Address</dt><dd><span class="wallet-address">0xBa975F1963684D7Ad7e3AA243d037223C1bb2bf6</span><button class="copy-btn" data-copy="0xBa975F1963684D7Ad7e3AA243d037223C1bb2bf6">Copy</button></dd></div>
               </dl>
               <p class="wallet-warning">Send only <strong>ETH</strong> on the <strong>Ethereum (ERC-20)</strong> network to this address.</p>
             </article>
@@ -163,7 +174,7 @@
             <div class="field">
               <label for="account">Cryptocurrency Sent</label>
               <select id="account" name="account">
-                <option>USDT (TRC-20)</option>
+                <option>USDT (ERC-20)</option>
                 <option>Bitcoin (BTC)</option>
                 <option>Ethereum (ETH)</option>
               </select>
